@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_221417) do
     t.string "username", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+    t.string "full_name", default: "", null: false
     t.string "phone_number", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
