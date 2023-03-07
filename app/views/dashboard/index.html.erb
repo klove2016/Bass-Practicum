@@ -1,11 +1,10 @@
 <table class='table table-condensed'>
   <thead>
     <tr>
-      <th>Email</th>
-      <th>Action</th>
+      <th>My Liked Hobbies</th>
     </tr>
   </thead>
   <tbody>
-    <%= render partial: 'friendships/friend', collection: @users, as: :user %>
+    <%= render partial: 'hobbies', collection: @hobbies, as: :hobby %>
   </tbody>
 </table>

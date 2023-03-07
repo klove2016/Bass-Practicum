@@ -1,0 +1,5 @@
+<%= content_tag :tr, id: dom_id(hobby) do %>
+  <td>
+    <%= link_to hobby.activity, hobby_path(hobby), class: "btn btn-primary col-6" %>
+  </td>
+<% end %>

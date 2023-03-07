@@ -1,7 +1,7 @@
 <%= content_tag :tr, id: dom_id(user) do %>
-  <td><%= link_to user.full_name, "/users/#{user.id}" %></td>
+  <td><%= link_to user.username, "/users/#{user.id}" %></td>
   <td>
-    <%= button_to 'Add Friend', [:new, :friendship, id: user], class: "text-primary text-decoration-underline", remote: true unless current_user.has_friendship?(user) %>
+    <%= link_to 'Add Friend', [:new, :friendship, id: user], class: "text-primary text-decoration-underline", remote: true unless current_user.has_friendship?(user) %>
     <%# button_to 'Add Friend', new_friendship_path(id: user), remote: true %>
     <%= button_to 'Accept Request', [:friendships, id: user], class: "text-primary text-decoration-underline", method: :post, remote: true if current_user.requested_friends_with?(user) %>
     <%= button_to 'Remove Request', [:friendship, id: user], class: "text-primary text-decoration-underline", method: :delete, remote: true if current_user.pending_friends_with?(user) %>

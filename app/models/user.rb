@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :likes
+  has_many :hobbies, through: :likes
   has_many :friendships
   has_many :friends, -> { where friendships: { status: :accepted }}, through: :friendships
   has_many :requested_friends, -> { where friendships: { status: :requested }}, through: :friendships, source: :friend
@@ -52,6 +54,10 @@ class User < ApplicationRecord
 
   def full_name
     first_name + " " + last_name
+  end
+
+  def self.all_except(user)
+    where.not(id: user.id)
   end
 
 end

@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: %i[ new create destroy ]
 
   def new
     current_user.friend_request(@user)
@@ -18,6 +18,10 @@ class FriendshipsController < ApplicationController
     current_user.reject_request(@user)
     redirect_back(fallback_location: root_path)
     # current_user.reload
+  end
+
+  def show
+    @users = User.all_except(current_user)
   end
 
   private
