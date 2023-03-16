@@ -1,12 +1,25 @@
 <h1>Hobbies</h1>
 
+<%= form_with url: hobbies_path, method: :get, local: true do |f| %>
+  <%= f.label :search, "Search Hobbies" %>
+  <%= f.text_field :search %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<%= link_to "View All Hobbies", hobbies_path,  class: "text-dark" %>
+
 <div id="hobbies">
-  <% @hobbies.each do |hobby| %>
-    <div class="row">
-      <div class="col-6"><%= link_to hobby.activity, hobby_path(hobby.id) %></div>
-      <div class="col-6"><%= link_to "Like this hobby", like_path(hobby.id) %></div>
-    </div>
+  <% if @hobbies.empty? %>
+    <p>No hobbies found.</p>
+  <% else %>
+    <% @hobbies.each do |hobby| %>
+      <div class="row">
+        <div class="col-6"><%= link_to hobby.activity, hobby_path(hobby.id) %></div>
+        <div class="col-6"><%= link_to "Like this hobby", like_path(hobby.id) %></div>
+      </div>
+    <% end %>
   <% end %>
 </div>
+
 
 <%= link_to "Create a new Hobby", new_hobby_path, class: "text-dark" %>
