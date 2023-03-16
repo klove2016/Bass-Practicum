@@ -4,7 +4,12 @@ class HobbiesController < ApplicationController
 
   # GET /hobbies or /hobbies.json
   def index
-    @hobbies = Hobby.all
+    @hobbies = if params[:search].present?
+      search_query = params[:search].downcase
+      Hobby.where("lower(activity) LIKE ?", "%#{search_query}%")
+    else
+      Hobby.all
+    end
   end
 
   # GET /hobbies/1 or /hobbies/1.json
